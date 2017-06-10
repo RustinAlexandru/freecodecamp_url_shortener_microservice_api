@@ -11,7 +11,7 @@ module.exports = function(app, db) {
                 .then(putUrlInDb, fail => {console.log(fail); throw new Error("Error url not valid")})
                 .then(resultedObj => res.send(resultedObj))
                 .then(() => db.close())
-                    .catch(err => {console.log("reason for fail \n" + err); res.send(JSON.stringify(err));}));
+                    .catch(err => {console.log("reason for fail \n" + err); res.send(err);}));
     }
 
     function handleGetURL(req, res) {
