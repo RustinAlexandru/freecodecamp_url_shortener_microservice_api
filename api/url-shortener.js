@@ -9,14 +9,16 @@ module.exports = function(app, db) {
     function handlePostURL(req, res) {
            return (Promise.all([ validateUrl(req), validateUrl(req).then(generateShortUrl) ])
                 .then(putUrlInDb, fail => {console.log(fail); throw new Error("Error url not valid")})
-                .then(resultedObj => {res.send(resultedObj); db.close(); })
+                .then(resultedObj => res.send(resultedObj))
+                .then(() => db.close())
                     .catch(err => console.log("reason for fail \n" + err)));
     }
 
     function handleGetURL(req, res) {
         const shortUrlNumber = req.params.shortUrlNumber;
         getOriginalUrlFromDb(shortUrlNumber, db)
-            .then(obj => {res.redirect(obj.originalUrl); db.close(); });
+            .then(obj => res.redirect(obj.originalUrl))
+            .then(() => db.close());
     }
     
     function getOriginalUrlFromDb(shortUrlNumber, db) {
