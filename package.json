@@ -1,0 +1,19 @@
+{
+  "name": "url_shortener",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "babel-node --presets es2015 server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "bluebird": "^3.5.0",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "mongodb": "^2.2.28"
+  }
+}
